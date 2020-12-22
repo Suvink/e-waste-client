@@ -5,12 +5,12 @@
        <div class="columns">
          <div class="column is-6 self-aligned-center">
             <div class="has-text-centered">
-              <img src="https://correcycling.com/wp-content/uploads/2016/07/Google-created-ANIMATION-of-E-waste-Recycling..gif">
+              <img src="../assets/home.png">
             </div>
          </div>
          <div class="colums is-6 self-aligned-center">
-           <h1 class="title is-1 mb-0">slkncksjcnskjcndjk</h1>
-           <h1 class="title is-5 mt-0">slkncksjcnskjcndjk</h1>
+           <h1 class="title is-1 mb-0">Don’t throw your future away!</h1>
+           <h1 class="title is-5 mt-0">Let us worry about your e-waste...</h1>
          </div>
        </div>
       </section>

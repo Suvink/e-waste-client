@@ -4,7 +4,7 @@ export const firebase = require('firebase')
 require('firebase/firestore')
 
 export const firebaseApp = initializeApp({
-  apiKey: 'AIzaSyAwDX0ko7LWxqkitZR9eXVpHv3JYCW81BM',
+  apiKey: process.env.VUE_APP_APIKEY,
   authDomain: 'ewaste-project.firebaseapp.com',
   databaseURL: 'https://ewaste-project.firebaseio.com',
   projectId: 'ewaste-project',
