@@ -143,6 +143,7 @@ export default {
           doc.data().points.forEach(function(point){
             thisState.userdata.points += point.points
           });
+          thisState.userdata.points = Math.round(thisState.userdata.points * 100) / 100
           //thisState.docid = doc.id
           //console.log(thisState.userdata.ongoingjobs)
         
