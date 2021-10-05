@@ -143,13 +143,23 @@ export default {
           //console.log(thisState.userdata.ongoingjobs)
         
         //Fetch jobs
-        firebaseApp.firestore().collection("jobs").where(
+        let userJobs = thisState.userdata.ongoingjobs;
+        let userJobsArrLength = userJobs.length/10;
+        let userJobsArr = [];
+
+        for(let i=0; i<userJobsArrLength; i++){
+          userJobsArr.push(userJobs.slice(i*10, (i+1)*10))
+        }
+
+        thisState.userjobs = []
+
+        userJobsArr.forEach((jobArr) => {
+          firebaseApp.firestore().collection("jobs").where(
           firebase.firestore.FieldPath.documentId(),
           "in",
-          thisState.userdata.ongoingjobs
+          jobArr
         )
         .onSnapshot(callback =>{
-            thisState.userjobs = []
             callback.forEach(function(docs){
             //console.log(docs.id)
             if(docs.data().status == 'pending' ||docs.data().status == 'active' ){
@@ -165,6 +175,7 @@ export default {
           console.log(error)
         }
         )
+        });
 
         })
       },
