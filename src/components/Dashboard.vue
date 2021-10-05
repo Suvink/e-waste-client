@@ -138,7 +138,11 @@ export default {
       firebaseApp.firestore().collection("users").where("email","==", loggedUserEmail)
       .onSnapshot(querySnapshot => {
         querySnapshot.forEach(function(doc){
-          thisState.userdata = doc.data()
+          thisState.userdata = doc.data();
+          thisState.userdata.points = 0;
+          doc.data().points.forEach(function(point){
+            thisState.userdata.points += point.points
+          });
           //thisState.docid = doc.id
           //console.log(thisState.userdata.ongoingjobs)
         
@@ -212,4 +216,8 @@ export default {
 
 <style>
 @import url('../assets/css/style.css');
+
+.dashbody{
+  min-height: 100vh;
+}
 </style>
