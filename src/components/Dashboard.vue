@@ -138,18 +138,32 @@ export default {
       firebaseApp.firestore().collection("users").where("email","==", loggedUserEmail)
       .onSnapshot(querySnapshot => {
         querySnapshot.forEach(function(doc){
-          thisState.userdata = doc.data()
+          thisState.userdata = doc.data();
+          thisState.userdata.points = 0;
+          doc.data().points.forEach(function(point){
+            thisState.userdata.points += point.points
+          });
           //thisState.docid = doc.id
           //console.log(thisState.userdata.ongoingjobs)
         
         //Fetch jobs
-        firebaseApp.firestore().collection("jobs").where(
+        let userJobs = thisState.userdata.ongoingjobs;
+        let userJobsArrLength = userJobs.length/10;
+        let userJobsArr = [];
+
+        for(let i=0; i<userJobsArrLength; i++){
+          userJobsArr.push(userJobs.slice(i*10, (i+1)*10))
+        }
+
+        thisState.userjobs = []
+
+        userJobsArr.forEach((jobArr) => {
+          firebaseApp.firestore().collection("jobs").where(
           firebase.firestore.FieldPath.documentId(),
           "in",
-          thisState.userdata.ongoingjobs
+          jobArr
         )
         .onSnapshot(callback =>{
-            thisState.userjobs = []
             callback.forEach(function(docs){
             //console.log(docs.id)
             if(docs.data().status == 'pending' ||docs.data().status == 'active' ){
@@ -165,6 +179,7 @@ export default {
           console.log(error)
         }
         )
+        });
 
         })
       },
@@ -201,4 +216,8 @@ export default {
 
 <style>
 @import url('../assets/css/style.css');
+
+.dashbody{
+  min-height: 100vh;
+}
 </style>

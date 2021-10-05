@@ -9,6 +9,7 @@ import ErrorPage from './components/ErrorPage.vue'
 import History from './components/History.vue'
 import Profile from './components/Profile.vue'
 import SignUp from './components/SignUp.vue'
+import PointsHistory from './components/PointsHistory.vue'
 
 Vue.use(Router)
 
@@ -52,6 +53,14 @@ let router =  new Router({
         path: '/history',
         name: 'History',
         component: History,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/points',
+        name: 'PointsHistory',
+        component: PointsHistory,
         meta: {
             requiresAuth: true
         }

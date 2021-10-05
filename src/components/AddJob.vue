@@ -209,7 +209,7 @@
                     </div>
                     <div class="has-text-centred mb-2" v-if="isLoading">
                         <img src="../assets/loader.gif" style="height: 50px">
-                        <p>Pocessing Data...</p>
+                        <p>Processing Data...</p>
                     </div>
                     <div class="field is-grouped justify-content-center">
                         <div class="control">
